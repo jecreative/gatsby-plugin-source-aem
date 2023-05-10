@@ -1,10 +1,10 @@
 # Gatsby Plugin Source AEM
 
-This Gatsby plugin sources data from Adobe Experience Manager (AEM), allowing you to build Gatsby sites with content managed in AEM.
+Source data from Adobe Experience Manager (AEM) to build Gatsby sites using content managed in AEM with this plugin.
 
-## Installation
+## 🚀 Installation
 
-Install the plugin with npm or yarn:
+Install the plugin using npm or yarn:
 
 ```sh
 npm install gatsby-plugin-source-aem
@@ -16,37 +16,53 @@ or
 yarn add gatsby-plugin-source-aem
 ```
 
-## Configuration
+## 🛠 Configuration
 
-Add the plugin to your gatsby-config.js file and configure the plugin options:
-
-```
+```javascript
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-plugin-source-aem",
+      resolve: 'gatsby-plugin-source-aem',
       options: {
-        serviceURL: "https://example.com/aem", // AEM instance URL
-        endpoint: "/path/to/your/endpoint", // API endpoint for your AEM instance
-        path: "src/data", // Destination path for AEM data
-        persistedQueries: ["path/to/query1.graphql", "path/to/query2.graphql"], // List of GraphQL query files
-        graphqlSchema: "path/to/schema.graphql", // Path to the GraphQL schema file
+        serviceURL: 'https://publish-XXXXXX-XXXXXXX.adobeaemcloud.com', // Your AEM instance URL
+        endpoint: '/content/cq:graphql/{YOUR-SITE}/endpoint', // GraphQL endpoint for your AEM instance
+        path: 'your-site-project-folder', // The destination path/folder in AEM
+        persistedQueries: ['your-persisted-query-name'], // GraphQL persisted query names published in AEM
+        graphqlSchema: 'path/to/schema.graphql', // Path to the GraphQL schema file
       },
     },
   ],
 };
 ```
 
-## Plugin Options
+## 📚 Plugin Options
 
-* `serviceURL`: The URL of your AEM instance.
-* `endpoint`: The GraphQL endpoint for your AEM instance.
-* `path`: The destination path/folder in AEM.
-* `persistedQueries`: An array of file paths to your GraphQL queries.
-* `graphqlSchema`: The file path to your GraphQL schema.
+- `serviceURL`: The URL of your AEM instance.
+- `endpoint`: The GraphQL endpoint for your AEM instance.
+- `path`: The destination path/folder in AEM.
+- `persistedQueries`: Array of GraphQL persisted query names published in AEM.
+- `graphqlSchema`: The file path for your GraphQL schema customization.
 
-## Contributing
+## ⚠️ Union Types Limitation
 
-If you'd like to contribute to the development of this plugin, please submit a pull request or open an issue on the GitHub repository.
+Currently, union types work only with content fragments that have a prefix of "Component" in their name. For example, a
+valid content fragment name would be `Component: Hero`. This limitation applies specifically to union types, and
+improvements are welcome.
 
+Union types will only apply to those prefixed with "Component," which can then be referenced as a `unionType` in the
+`schema.graphql` files like this:
 
+```graphql
+type Model implements Node {
+  components: [Components]!
+}
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! If you'd like to contribute to this plugin's development, please submit a pull request or
+open an issue on the [GitHub repository](https://github.com/jecreative/gatsby-plugin-source-aem).
+
+```
+
+```
