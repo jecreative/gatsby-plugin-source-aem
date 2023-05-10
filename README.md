@@ -62,7 +62,3 @@ type Model implements Node {
 
 Contributions are welcome! If you'd like to contribute to this plugin's development, please submit a pull request or
 open an issue on the [GitHub repository](https://github.com/jecreative/gatsby-plugin-source-aem).
-
-```
-
-```
